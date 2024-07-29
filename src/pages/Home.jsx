@@ -99,7 +99,7 @@ function Home() {
           </div>
         
 
-        <div className=' ml-[10%]  mt-4'> <TimelineSection /></div>
+        <div className=' ml-[15%]  mt-4'> <TimelineSection /></div>
 
       </div>
 
@@ -107,7 +107,7 @@ function Home() {
 
 
        {/* section 4 */}
-      <div className='bg-pure-greys-5 pt-24 -mt-20 pb-11'>
+      <div className='bg-pure-greys-5 pt-32 -mt-20 pb-11'>
         <InstructorSection/>
       </div>
       
