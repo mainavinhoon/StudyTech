@@ -6,7 +6,7 @@ import { NavbarLinks } from '../../data/navbar-links'
 import { matchPath } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import ProfileDropdown from '../core/Auth/ProfileDropdown';
 import { useState, useEffect } from 'react'
 import { categories } from '../../services/apis'
@@ -47,7 +47,6 @@ const Navbar = () => {
     })()
   }, [])
 
-
 // useEffect(() => {
 //    fetchSubLinks()
  
@@ -56,7 +55,9 @@ const Navbar = () => {
   const matchRoute = (route) => {
 
     return matchPath({path:route}, location.pathname);
+
   }
+
   return (
     <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-100'>
       
@@ -143,13 +144,14 @@ const Navbar = () => {
               </Link>
             )
           }
-          {
-            token !==null && <ProfileDropdown/> && (
-              <Link> 
-              </Link>
-            )
-          }
+ 
       </div>
+      {token !== null && <ProfileDropdown />}
+      <Link className="mr-4 md:hidden">
+         
+              <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+             
+            </Link>
       </div>
     </div>
   )

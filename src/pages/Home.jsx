@@ -10,7 +10,7 @@ function Home() {
     <div >
        {/* section 1 */}
 
-      <div className='ralative mx-auto flex w-11/12 items-center  justify-between '>
+      <div className='ralative mx-auto md:flex w-11/12 items-center  justify-between '>
 
         <div className='w-[50%] flex flex-col gap-10'>
           <div className=' text-center text-4xl  font-semibold mt-7'> <p>Explore all the Coding Courses in one place with <HighlightText text={"Study Tech"}/></p></div>
@@ -26,7 +26,7 @@ function Home() {
         </div>
 
                               {/* Image section */}
-        <div className='mt-3 mr-10 '>
+        <div className=' md:visible mt-3 mr-10 '>
           <img src="https://img.freepik.com/premium-photo/cartoon-illustration-program-development-team-web-developer_1029679-20145.jpg?size=626&ext=jpg&ga=GA1.1.1271323351.1704313206&semt=ais_userhttps://img.freepik.com/premium-vector/programmer-developer-engineer-with-laptop-writing-code-computer-creates-software_530733-2701.jpg?size=626&ext=jpg&ga=GA1.1.1271323351.1704313206&semt=ais_user" alt=" human is coding" srcset="" />
            </div>
 
