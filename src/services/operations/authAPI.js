@@ -162,6 +162,7 @@ export function resetPassword(password, confirmPassword, token) {
       const response = await apiConnector("POST", RESETPASSWORD_API, {password, confirmPassword, token});
 
       console.log("RESET Password RESPONSE ... ", response);
+ 
 
 
       if(!response.data.success) {

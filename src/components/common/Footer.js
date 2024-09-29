@@ -52,7 +52,7 @@ const Footer = () => {
                 <FaTwitter />
                 <FaYoutube />
               </div>
-              <div></div>
+              
             </div>
 
             {/* <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
@@ -84,24 +84,7 @@ const Footer = () => {
             </div> */}
 
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Plans
-              </h1>
-
-              <div className="flex flex-col gap-2 mt-2">
-                {Plans.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
+              
               <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
                 Community
               </h1>
