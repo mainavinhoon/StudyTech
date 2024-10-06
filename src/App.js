@@ -11,6 +11,7 @@ import VerifyEmail from './pages/VerifyEmail';
 import UpdatePassword from './pages/UpdatePassword';
 import AboutUs from './pages/AboutUs';
 import { TypeAnimation } from 'react-type-animation';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -77,6 +78,9 @@ function App() {
             </OpenRoute>
           }
       /> 
+
+        <Route path="/contact" element={<Contact />} /> 
+
         {/* <Route path="dashboard/my-profile" element={<MyProfile />} /> */}
 {/*       
       <Route path="dashboard/Settings" element={<Settings />} /> */}
