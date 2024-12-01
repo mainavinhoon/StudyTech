@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react'
 import { categories } from '../../services/apis'
 import { apiConnector } from '../../services/apiconnector'
 import { IoIosArrowDown } from "react-icons/io";
-import { ACCOUNT_TYPE } from "../../utills/constants"
+import { ACCOUNT_TYPE } from "../../utils/constants"
 
 const Navbar = () => {
 
@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const location = useLocation();
   const [subLinks, setSubLinks] = useState([]);
-
+  const [loading, setLoading] = useState(false)
   // const fetchSubLinks = async() => {
   //   try {
   //     const result = apiConnector("GET", categories.CATEGORIES_API);
@@ -35,7 +35,7 @@ const Navbar = () => {
   //  }
    useEffect(() => {
     ;(async () => {
-      // setLoading(true)
+      setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
         setSubLinks(res.data.data)
@@ -43,7 +43,7 @@ const Navbar = () => {
       } catch (error) {
         console.log("Could not fetch Categories.", error)
       }
-      // setLoading(false)
+      setLoading(false)
     })()
   }, [])
 
@@ -54,7 +54,7 @@ const Navbar = () => {
   
   const matchRoute = (route) => {
 
-    return matchPath({path:route}, location.pathname);
+    return matchPath({path: route}, location.pathname);
 
   }
 
