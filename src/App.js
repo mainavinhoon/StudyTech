@@ -36,20 +36,20 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen   flex flex-col font-inter">
-      <div className='w-screen h-10 pl-[20%] text-2xl self-center border border-b-2 '>
+      <div className='w-screen invisible h-fit md:visible pl-[20%] text-2xl self-center border border-b-2 '>
       <TypeAnimation 
             sequence={["Application is under Developement - Few features aren't accessible",200,""]}
             repeat={Infinity}
             curser={true}
-            style={{whiteSpace:"pre-line", display:"block", position:"relative"}}
+            style={{whiteSpace:"pre-line", display:"block", position:"relative" }}
             omitDeletionAnimation={true} />
         </div>
        
       <Navbar/>
       <Routes>
       <Route path="/" element={<Home/>} />
-      <Route path="catalog/:catalogName" element={<Catalog/>} />
-      <Route path="courses/:courseId" element={<CourseDetails/>} />
+      <Route path="/catalog/:catalogName" element={<Catalog/>}></Route>
+      <Route path="/courses/:courseId" element={<CourseDetails/>} />
 
         <Route
           path="signup"

@@ -12,7 +12,7 @@ function Home() {
 
       <div className='ralative mx-auto md:flex w-11/12 items-center  justify-between '>
 
-        <div className='w-[50%] flex flex-col gap-10'>
+        <div className='md:w-[50%] flex flex-col gap-10'>
           <div className=' text-center text-4xl  font-semibold mt-7'> <p>Explore all the Coding Courses in one place with <HighlightText text={"Study Tech"}/></p></div>
           <div className=' W-[90%] mt-4  text-center text-lg '><p> StudyTech blends technology with education in order to nurture the next generation of leaders with problem solving skills, creativity, logical thinking, designing and coding abilities.</p></div>
           
@@ -35,11 +35,11 @@ function Home() {
 
        {/* section 2 */}
 
-       <div className='ralative   mx-auto flex w-11/12 items-center  justify-between '>
+       <div className='ralative  md:flex  mx-auto  w-11/12 items-center  justify-between '>
 
           
                                   {/* COde animation section */}
-          <div className='   hover:rotate-12 hover:transition-transform -translate-y-3 duration-400 ml-4 p-10 '>
+          <div className=' md:w-fit overflow-none  hover:rotate-12 hover:transition-transform -translate-y-3 duration-400 ml-4 p-10 '>
 
             <CodeBlocks 
               codeBlock ={`<!DOCTYPE html>\n <html>\n <head>\n <title style="color:blue">YourWebsite</title>\n </head>\n <body>\n <p>I'm a paragraph</p>\n <h1> <a href="/">Header</a> </h1>\n </body>\n </html>`} 
@@ -50,7 +50,7 @@ function Home() {
           </div>
 
 
-        <div className='w-[50%]  flex flex-col gap-10'>
+        <div className='md:w-[50%]  flex flex-col gap-10'>
           <div className=' text-center text-3xl  font-semibold mt-7'> <p> Unlock your <HighlightText text={"Coding Potential" }/> with our online courses,</p></div>
           <div className=' W-[90%] mt-4  text-center text-lg '><p> Our courses are designed and tought by Industry experts who have years of experience  in coding are passionate about sharing their knowledge with you.</p></div>
           
@@ -82,8 +82,8 @@ function Home() {
 
         </div>
 
-        <div className=" p-20  pt-0 flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
-            <div className="text-4xl   font-semibold lg:w-[45%] ">
+        <div className=" p-12 md:p-20  pt-0 flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
+            <div className="text-4xl   font-semibold md:w-[45%] ">
               Get the skills you need for a <HighlightText text={" job that is in demand."} />
             </div>
             <div className="flex flex-col items-start gap-10 lg:w-[40%]">
@@ -107,7 +107,7 @@ function Home() {
 
 
        {/* section 4 */}
-      <div className='bg-pure-greys-5 pt-32 -mt-20 pb-11'>
+      <div className='bg-pure-greys-5 md:pt-32 md:-mt-20 md:pb-11'>
         <InstructorSection/>
       </div>
       

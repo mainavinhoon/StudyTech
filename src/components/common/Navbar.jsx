@@ -3,9 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import HighLightText from '../core/HomePage/HighlightText'
 import { NavbarLinks } from '../../data/navbar-links'
-import { matchPath } from 'react-router-dom'
+import { matchPath , useNavigate} from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../services/operations/authAPI'
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import ProfileDropdown from '../core/Auth/ProfileDropdown';
 import { useState, useEffect } from 'react'
@@ -21,6 +22,8 @@ const Navbar = () => {
   const {user} = useSelector((state) => state.profile);
   const {totalItems} = useSelector((state) => state.cart);
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
   const location = useLocation();
   const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false)
@@ -38,7 +41,7 @@ const Navbar = () => {
       setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
+        setSubLinks(res?.data?.data || [])
         console.log("SubLinks Results", res.data.data)
       } catch (error) {
         console.log("Could not fetch Categories.", error)
@@ -49,17 +52,18 @@ const Navbar = () => {
 
 // useEffect(() => {
 //    fetchSubLinks()
- 
+function clickHandler(){
+  dispatch( logout(navigate) )
+}
 //   }, [])
   
-  const matchRoute = (route) => {
+const matchRoute = (route) => {
+  return matchPath({path:route}, location.pathname)
+}
 
-    return matchPath({path: route}, location.pathname);
-
-  }
 
   return (
-    <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-100'>
+    <div className='flex h-14 items-center justify-center  border-b-[1px] border-b-richblack-100'>
       
       <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
 
@@ -69,14 +73,14 @@ const Navbar = () => {
 
       {/* navlinks */}
       <nav>
-        <ul className='flex gap-x-6 text-richblack-800'>
+        <ul className='flex flex-col gap-x-6 md:flex-row text-richblack-800'>
           {
-            NavbarLinks.map((link,index) => (
-              <li key={index}>
+            NavbarLinks.map((elements,index) => {
+             return <li key={index}>
                 {
-                  link.title === "Catalog" ? ( 
+                  elements.title === "Catalog" ? ( 
                     <div className='flex items-center gap-2 relative group '>
-                      <p>{link.title} </p>
+                      <p>{elements.title} </p>
                       <IoIosArrowDown />
 
                       <div className='invisible absolute translate-x-[-50%] translate-y-[30%] left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-700 text-white  opacity-0
@@ -84,13 +88,18 @@ const Navbar = () => {
                                         <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-700"></div>
                             {
                               subLinks.length ? (
-                                subLinks.map((subLinks, index) => (
-                                  <Link to={`${subLinks.link}`} key={index}  className="  rounded-lg bg-transparent py-4 pl-6 hover:bg-richblack-600">
-                                    <p>{ subLinks.name } </p>
-                                  
-                                  </Link>
-                                  
-                                ))
+                                <>
+                                {
+                                   subLinks.map((subLink, index) => (
+                                    <Link to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`} key={index}  className="  rounded-lg bg-transparent py-4 pl-6 hover:bg-richblack-600">
+                                      <p>{ subLink.name } </p>
+                                    
+                                    </Link>
+                                    
+                                  ))
+                                }
+                               
+                                </>
                               ) : ( <div><p className="text-center">No Courses Found</p> </div> )
                             }
                                       
@@ -98,24 +107,24 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    <Link to={link?.path}>
+                    <Link to={elements?.path}>
                       
-                       <p className ={`${matchRoute(link?.path) ? "text-yellow-25" : " text-richblack-800"}`} >
-                        {link.title}
+                       <p className ={`${matchRoute(elements?.path) ? "text-yellow-25" : " text-richblack-800"}`} >
+                        {elements.title}
                         </p> 
                         
                     </Link>
                   )
                 }
               </li>
-            ))
+})
           }
         </ul>
       </nav>
 
       {/* login/signUp/Dashboard */}
 
-      <div className='flex gap-x-4 items-centre'>
+      <div className='flex flex-col md:flex-row gap-x-4 items-centre'>
 
       {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link to="/dashboard/cart" className="relative">
